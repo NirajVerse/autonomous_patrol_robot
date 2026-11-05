@@ -1,0 +1,214 @@
+
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="default">
+
+    <!-- Physics -->
+    <physics name="physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Gazebo systems -->
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- Background and ambient lighting -->
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>false</shadows>
+    </scene>
+
+    <!-- Sunlight -->
+    <light name="sun" type="directional">
+      <cast_shadows>false</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>-0.3 -0.3 -1</direction>
+    </light>
+
+    <!-- Gray floor -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="ground">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.45 0.45 1</ambient>
+            <diffuse>0.55 0.55 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- LEFT VERTICAL ROAD -->
+    <model name="left_road">
+      <static>true</static>
+      <pose>-1.5 0 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.25 3.0 0.004</size></box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.95 1</ambient>
+            <diffuse>0.1 0.35 0.95 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- CENTER VERTICAL ROAD -->
+    <model name="center_road">
+      <static>true</static>
+      <pose>0 -0.25 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.25 2.5 0.004</size></box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.95 1</ambient>
+            <diffuse>0.1 0.35 0.95 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- RIGHT VERTICAL ROAD -->
+    <model name="right_road">
+      <static>true</static>
+      <pose>1.5 0.75 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.25 1.5 0.004</size></box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.95 1</ambient>
+            <diffuse>0.1 0.35 0.95 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- UPPER HORIZONTAL ROAD -->
+    <model name="upper_road">
+      <static>true</static>
+      <pose>0 1.0 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box><size>3.0 0.25 0.004</size></box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.95 1</ambient>
+            <diffuse>0.1 0.35 0.95 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- LOWER HORIZONTAL ROAD -->
+    <model name="lower_road">
+      <static>true</static>
+      <pose>0 0 0.002 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box><size>3.0 0.25 0.004</size></box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.95 1</ambient>
+            <diffuse>0.1 0.35 0.95 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- PATROL STATION P1 -->
+    <model name="P1">
+      <static>true</static>
+      <pose>-1.5 1.5 0.005 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.09</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0.9 0.2 1</ambient>
+            <diffuse>0 0.9 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- PATROL STATION P2 -->
+    <model name="P2">
+      <static>true</static>
+      <pose>-1.5 -1.5 0.005 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.09</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0.9 0.2 1</ambient>
+            <diffuse>0 0.9 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- PATROL STATION P3 -->
+    <model name="P3">
+      <static>true</static>
+      <pose>1.5 1.5 0.005 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.09</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0.9 0.2 1</ambient>
+            <diffuse>0 0.9 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
+
